@@ -14,12 +14,12 @@ namespace Keepr
   public class KeepsServiceTests
   {
     private readonly KeepsService keepsService;
-    private readonly Mock<IKeepsRepository<Keep>> moqKeepsRepository;
+    private readonly Mock<IKeepsRepository> moqKeepsRepository;
 
 
     public KeepsServiceTests() //Constructor
     {
-      moqKeepsRepository = new Mock<IKeepsRepository<Keep>>();
+      moqKeepsRepository = new Mock<IKeepsRepository>();
       keepsService = new KeepsService(moqKeepsRepository.Object);
     }
 
