@@ -101,6 +101,34 @@ namespace keepr_test
       Assert.AreEqual(newKeep, result);
     }
 
+    [TestMethod]
+    public void CanEdit()
+    {
+      Keep newKeep = new Keep { Name = "newKeep", Id = 1 };
+      Keep update = new Keep { Name = "newKeepEdited", Id = 1 };
+
+
+      moqKeepsRepository.Setup(repo => repo.GetById(1)).Returns(newKeep);
+      moqKeepsRepository.Setup(repo => repo.Edit(update));
+
+      var result = keepsService.Edit(update);
+
+      Assert.AreSame(update, result);
+    }
+
+    [TestMethod]
+    public void CanDelete()
+    {
+      Keep keepToDelete = new Keep { Name = "keepToDelete", Id = 1 };
+
+      moqKeepsRepository.Setup(repo => repo.GetById(1)).Returns(keepToDelete);
+      moqKeepsRepository.Setup(repo => repo.Delete(1));
+
+      var result = keepsService.Delete(1);
+
+      Assert.AreEqual("Successfully Deleted", result);
+    }
+
 
 
 
